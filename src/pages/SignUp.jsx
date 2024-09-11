@@ -62,8 +62,9 @@ function SignUp() {
 
         toast.dismiss(signupToast);
         toast.success("User created succesfully");
-        localStorage.setItem("jtoken", res.data.token);
-        console.log(res.data.token);
+
+        localStorage.setItem("jtoken", res.data.data.token);
+
         navigate(`/app`);
       } catch (err) {
         console.log(err);
