@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import UnAuthorized from "../components/UnAuthorized";
 import Authorized from "../components/Authorized";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -19,11 +22,11 @@ function Welcome() {
             },
           }
         );
-
+        toast.success("User Logged in successfully");
         setUser(res.data.data.user);
       } catch (err) {
-        // toast.error(err.data.data.)
-        console.log(err);
+        toast.error("Unable to login");
+        navigate("/login");
       } finally {
         setIsLoading(false);
       }

@@ -48,8 +48,7 @@ function Login() {
         );
 
         localStorage.setItem("jtoken", res.data.token);
-        toast.success("Logged in successfully");
-        navigate(`/app/`);
+        navigate(`/app`);
       } catch (err) {
         toast.error(err.response.data.message);
       } finally {
