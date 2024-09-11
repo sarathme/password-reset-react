@@ -13,7 +13,7 @@ function Welcome() {
     async function fetchUser() {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/v1/users/protect`,
+          `https://password-reset-loz2.onrender.com//api/v1/users/protect`,
           {
             withCredentials: true,
             headers: {

@@ -40,7 +40,7 @@ function Login() {
       try {
         setLoggingIn(true);
         const res = await axios.post(
-          "http://127.0.0.1:3000/api/v1/users/login",
+          "https://password-reset-loz2.onrender.com//api/v1/users/login",
           body
         );
         console.log(res);

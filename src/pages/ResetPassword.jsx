@@ -38,7 +38,7 @@ function ResetPassword() {
       try {
         setIsUpdating(true);
         const res = await axios.patch(
-          `http://127.0.0.1:3000/api/v1/users/resetPassword/${resetToken}`,
+          `https://password-reset-loz2.onrender.com//api/v1/users/resetPassword/${resetToken}`,
           body
         );
         console.log(res);
