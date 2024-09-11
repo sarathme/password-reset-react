@@ -57,18 +57,14 @@ function SignUp() {
           body,
           {
             withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("jtoken")}`,
-            },
           }
         );
 
         toast.dismiss(signupToast);
         toast.success("User created succesfully");
         localStorage.setItem("jtoken", res.data.token);
-        console.log(res.data.data.user._id);
+        console.log(res.data.token);
         navigate(`/app`);
-        console.log(res);
       } catch (err) {
         console.log(err);
         toast.dismiss(signupToast);

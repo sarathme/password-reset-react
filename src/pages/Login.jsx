@@ -41,19 +41,14 @@ function Login() {
         setLoggingIn(true);
         const res = await axios.post(
           "http://127.0.0.1:3000/api/v1/users/login",
-          body,
-          {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("jtoken")}`,
-            },
-          }
+          body
         );
-
+        console.log(res);
         localStorage.setItem("jtoken", res.data.token);
         navigate(`/app`);
       } catch (err) {
         toast.error(err.response.data.message);
+        console.log(err);
       } finally {
         setLoggingIn(false);
         toast.dismiss(loginToast);
