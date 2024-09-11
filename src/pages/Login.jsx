@@ -36,6 +36,7 @@ function Login() {
     validate,
     onSubmit: async (values) => {
       const body = { ...values };
+      const loginToast = toast.loading("Logging In Please Wait...");
       try {
         setLoggingIn(true);
         const res = await axios.post(
@@ -53,6 +54,7 @@ function Login() {
         toast.error(err.response.data.message);
       } finally {
         setLoggingIn(false);
+        toast.dismiss(loginToast);
       }
     },
   });
