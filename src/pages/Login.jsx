@@ -44,6 +44,9 @@ function Login() {
           body,
           {
             withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jtoken")}`,
+            },
           }
         );
 
