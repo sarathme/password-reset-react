@@ -8,7 +8,7 @@
 try {
   setLoggingIn(true);
   const res = await axios.post(
-    "http://127.0.0.1:3000/api/v1/users/login",
+    `${import.meta.env.VITE_API_URL}/api/v1/users/login`,
     body,
     {
       withCredentials: true,
@@ -31,7 +31,7 @@ try {
 try {
   setIsCreating(true);
   const res = await axios.post(
-    "http://127.0.0.1:3000/api/v1/users/signup",
+    `${import.meta.env.VITE_API_URL}/api/v1/users/signup`,
     body,
     {
       withCredentials: true,
@@ -62,7 +62,7 @@ try {
 try {
   setIsSendingEmail(true);
   const res = await axios.post(
-    "http://127.0.0.1:3000/api/v1/users/forgotPassword",
+    `${import.meta.env.VITE_API_URL}/api/v1/users/forgotPassword`,
     body,
     {
       withCredentials: true,
@@ -92,7 +92,7 @@ try {
 try {
   setIsUpdating(true);
   const res = await axios.patch(
-    `http://127.0.0.1:3000/api/v1/users/resetPassword/${resetToken}`,
+    `${import.meta.env.VITE_API_URL}/api/v1/users/resetPassword/${resetToken}`,
     body
   );
   console.log(res);

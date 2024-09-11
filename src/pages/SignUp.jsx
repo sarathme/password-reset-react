@@ -53,7 +53,7 @@ function SignUp() {
       try {
         setIsCreating(true);
         const res = await axios.post(
-          "http://127.0.0.1:3000/api/v1/users/signup",
+          `${import.meta.env.VITE_API_URL}/api/v1/users/signup`,
           body,
           {
             withCredentials: true,

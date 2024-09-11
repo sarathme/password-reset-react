@@ -13,7 +13,7 @@ function Welcome() {
     async function fetchUser() {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/v1/users/protect`,
+          `${import.meta.env.VITE_API_URL}/api/v1/users/protect`,
           {
             withCredentials: true,
             headers: {
