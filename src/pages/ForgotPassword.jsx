@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import InputGroup from "../components/InputGroup";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const validate = (values) => {
   const errors = {};
@@ -25,7 +25,7 @@ function ForgotPassword() {
     onSubmit: async (values) => {
       const body = { ...values };
 
-      const sendingEmailToast = toast.loading("Loading...");
+      const sendingEmailToast = toast.loading("Sending Reset Email...");
       try {
         setIsSendingEmail(true);
         const res = await axios.post(
@@ -41,11 +41,10 @@ function ForgotPassword() {
         );
 
         toast.dismiss(sendingEmailToast);
-        toast.success("Token sent to email");
-        console.log(res);
+        toast.success(res.data.data.message);
+
         navigate("/login");
       } catch (err) {
-        console.log(err);
         toast.dismiss(sendingEmailToast);
         toast.error(err.response.data.message);
       } finally {
@@ -53,7 +52,7 @@ function ForgotPassword() {
       }
     },
   });
-  console.log(window.location.origin);
+
   return (
     <form className="login-block" noValidate onSubmit={formik.handleSubmit}>
       <h1 className="heading-primary">Forgot Password</h1>
@@ -68,7 +67,9 @@ function ForgotPassword() {
         error={formik.touched.email && formik.errors.email}
         errMsg={formik.errors.email}
       />
-
+      <div className="cta">
+        <Link to="/signup">Don&apos;t have a account? Sign Up</Link>
+      </div>
       <button type="submit" disabled={isSendingEmail}>
         Send Email
       </button>

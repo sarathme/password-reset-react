@@ -44,11 +44,9 @@ try {
   toast.dismiss(signupToast);
   toast.success("User created succesfully");
   localStorage.setItem("jtoken", res.data.token);
-  console.log(res.data.data.user._id);
+
   navigate(`/app`);
-  console.log(res);
 } catch (err) {
-  console.log(err);
   toast.dismiss(signupToast);
   toast.error(err.response.data.message);
 } finally {
@@ -75,10 +73,9 @@ try {
 
   toast.dismiss(sendingEmailToast);
   toast.success("Token sent to email");
-  console.log(res);
+
   navigate("/login");
 } catch (err) {
-  console.log(err);
   toast.dismiss(sendingEmailToast);
   toast.error(err.response.data.message);
 } finally {
@@ -95,13 +92,11 @@ try {
     `${import.meta.env.VITE_API_URL}/api/v1/users/resetPassword/${resetToken}`,
     body
   );
-  console.log(res);
 
   toast.success("Password changed successfully");
   localStorage.setItem("jtoken", res.data.token);
   navigate("/login");
 } catch (err) {
-  console.log(err);
   toast.error(err.response.data.message);
 } finally {
   setIsUpdating(false);

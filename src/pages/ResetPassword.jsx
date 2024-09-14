@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import InputGroup from "../components/InputGroup";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 const validate = (values) => {
   const errors = {};
@@ -43,13 +43,11 @@ function ResetPassword() {
           }/api/v1/users/resetPassword/${resetToken}`,
           body
         );
-        console.log(res);
 
         toast.success("Password changed successfully");
         localStorage.setItem("jtoken", res.data.token);
         navigate("/login");
       } catch (err) {
-        console.log(err);
         toast.error(err.response.data.message);
       } finally {
         setIsUpdating(false);
@@ -83,7 +81,9 @@ function ResetPassword() {
         error={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
         errMsg={formik.errors.passwordConfirm}
       />
-
+      <div className="cta">
+        <Link to="/login">Back to Login</Link>
+      </div>
       <button type="submit" disabled={isUpdating}>
         Change Password
       </button>

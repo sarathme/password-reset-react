@@ -4,14 +4,14 @@ import Spinner from "../components/Spinner";
 import UnAuthorized from "../components/UnAuthorized";
 import Authorized from "../components/Authorized";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
-      console.log(localStorage.getItem("jtoken"));
       try {
         const res = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/v1/users/protect`,
@@ -26,14 +26,15 @@ function Welcome() {
         setUser(res.data.data.user);
       } catch (err) {
         toast.error(err.response.data.message);
+        navigate("/login");
       } finally {
         setIsLoading(false);
       }
     }
 
     fetchUser();
-  }, []);
-  console.log(localStorage.getItem("jtoken"));
+  }, [navigate]);
+
   return (
     <div className="login-block">
       {isLoading && <Spinner />}

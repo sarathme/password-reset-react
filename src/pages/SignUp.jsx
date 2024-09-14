@@ -67,7 +67,6 @@ function SignUp() {
 
         navigate(`/app`);
       } catch (err) {
-        console.log(err);
         toast.dismiss(signupToast);
         toast.error(err.response.data.message);
       } finally {

@@ -43,12 +43,11 @@ function Login() {
           `${import.meta.env.VITE_API_URL}/api/v1/users/login`,
           body
         );
-        console.log(res);
+
         localStorage.setItem("jtoken", res.data.token);
         navigate(`/app`);
       } catch (err) {
         toast.error(err.response.data.message);
-        console.log(err);
       } finally {
         setLoggingIn(false);
         toast.dismiss(loginToast);
