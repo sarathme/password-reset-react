@@ -41,7 +41,7 @@ function ForgotPassword() {
         );
 
         toast.dismiss(sendingEmailToast);
-        toast.success(res.data.data.message);
+        toast.success(res.data.message);
 
         navigate("/login");
       } catch (err) {
